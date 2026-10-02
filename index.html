@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio | Cientista de Dados</title>
+    <style>
+        /* =========================================
+           VARIÁVEIS DE CORES (Baseado na sua paleta)
+           ========================================= */
+        :root {
+            --bg-dark: #12100d; /* Fundo principal escuro */
+            --bg-card: #24201A; /* Cor 1 da paleta */
+            --purple-dark: #3F2548; /* Cor 2 da paleta */
+            --blue-accent: #35369C; /* Cor 3 da paleta */
+            --purple-light: #7C679E; /* Cor 4 da paleta */
+            --yellow-accent: #C8C793; /* Cor 5 da paleta */
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+        }
+
+        /* =========================================
+           RESET E TIPOGRAFIA
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           MENU FLUTUANTE (Estilo Imagem 7)
+           ========================================= */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(63, 37, 72, 0.4); /* Fundo translúcido */
+            backdrop-filter: blur(10px); /* Efeito Glass/Vidro */
+            padding: 10px 30px;
+            border-radius: 100px; /* Bordas de pílula */
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            border: 1px solid rgba(124, 103, 158, 0.3);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--purple-light);
+            color: var(--bg-dark);
+        }
+
+        /* =========================================
+           SEÇÃO PRINCIPAL (HERO) (Estilo Imagem 6)
+           ========================================= */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: var(--purple-light);
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Botões com bordas arredondadas (Estilo Imagem 8) */
+        .btn {
+            padding: 12px 30px;
+            border-radius: 100px; 
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--purple-light);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-accent);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--purple-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--purple-light);
+        }
+
+        /* =========================================
+           SEÇÃO DE PROJETOS
+           ========================================= */
+        .projects-section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .projects-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--yellow-accent); /* Destaque com a cor 5 */
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cartão de Projeto (Borda 30px como na Imagem 8) */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 30px;
+            padding: 25px;
+            border: 1px solid var(--purple-dark);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple-light);
+            box-shadow: 0 10px 20px rgba(53, 54, 156, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--purple-light);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Tags de Habilidades no Card */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: var(--purple-dark);
+            color: var(--yellow-accent);
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGAÇÃO -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+    <!-- CABEÇALHO -->
+    <section class="hero" id="home">
+        <!-- Substitua pelo seu nome -->
+        <h1>Olá! Eu sou <span>Seu Nome</span></h1>
+        <h2>Cientista de Dados / Desenvolvedor</h2>
+        <p style="max-width: 600px; color: var(--text-muted);">
+            Transformo dados em inteligência de negócios. Especialista em Machine Learning, APIs, e Engenharia de Dados na nuvem.
+        </p>
+        <div class="buttons">
+            <a href="#projetos" class="btn btn-primary">Ver meus Projetos</a>
+            <a href="#contato" class="btn btn-outline">Fale Comigo</a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE PROJETOS -->
+    <section class="projects-section" id="projetos">
+        <h2>Meus Projetos</h2>
+        <div class="grid">
+
+            <!-- CARTÃO: PROJETO DATARISK -->
+            <div class="card">
+                <h3>Motor de Risco de Crédito</h3>
+                <p>Pipeline end-to-end integrando engenharia de dados em nuvem (AWS S3), clusterização comportamental (K-Means) e classificação (Gradient Boosting). O modelo foi produtizado como uma API REST utilizando FastAPI e empacotado em Docker.</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Scikit-Learn</span>
+                </div>
+                <!-- Substitua o link abaixo pelo link real do seu repositório no GitHub -->
+                <a href="https://github.com/hellnM/Credit-Risk_API" class="btn btn-primary" style="display: inline-block; padding: 8px 20px; font-size: 0.9rem;">Ver Código</a>
+            </div>
+
+            <!-- CARTÃO: OUTRO PROJETO (Exemplo) -->
+            <div class="card">
+                <h3>Previsão de Vendas (Exemplo)</h3>
+                <p>Modelo de regressão para prever o faturamento de lojas utilizando dados históricos. Construído com XGBoost e visualização de dados via Streamlit.</p>
+                <div class="tags">
+                    <span class="tag">Pandas</span>
+                    <span class="tag">XGBoost</span>
+                    <span class="tag">Streamlit</span>
+                </div>
+                <a href="#" class="btn btn-outline" style="display: inline-block; padding: 8px 20px; font-size: 0.9rem;">Em breve</a>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>

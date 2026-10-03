@@ -3,73 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio | Cientista de Dados</title>
+    <title>Hellen | Cientista de Dados</title>
+    <meta name="description" content="Portfólio de Hellen: ciência de dados, machine learning e modelagem quantitativa.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         /* =========================================
-           VARIÁVEIS DE CORES (Baseado na sua paleta)
+           VARIÁVEIS (paleta + formas)
            ========================================= */
         :root {
-            --bg-dark: #12100d; /* Fundo principal escuro */
-            --bg-card: #24201A; /* Cor 1 da paleta */
-            --purple-dark: #3F2548; /* Cor 2 da paleta */
-            --blue-accent: #35369C; /* Cor 3 da paleta */
-            --purple-light: #7C679E; /* Cor 4 da paleta */
-            --yellow-accent: #C8C793; /* Cor 5 da paleta */
+            --bg-dark: #12100d;
+            --bg-card: #24201A;      /* Cor 1 */
+            --purple-dark: #3F2548;  /* Cor 2 */
+            --blue-accent: #35369C;  /* Cor 3 */
+            --purple-light: #7C679E; /* Cor 4 */
+            --yellow-accent: #C8C793;/* Cor 5 */
             --text-light: #ffffff;
-            --text-muted: #b0b0b0;
+            --text-muted: #b8b4c0;
+
+            --pill: 999px;           /* "100%" de verdade: pílula perfeita em qualquer tamanho */
+            --card-radius: 30px;     /* cartões grandes, como no exemplo de CSS */
+
+            --glass-bg: rgba(36, 32, 26, 0.45);
+            --glass-border: rgba(124, 103, 158, 0.28);
         }
 
         /* =========================================
-           RESET E TIPOGRAFIA
+           RESET E BASE
            ========================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        section { scroll-margin-top: 20px; }
+
         /* =========================================
-           MENU FLUTUANTE (Estilo Imagem 7)
+           FUNDO COM GRADIENTES DESFOCADOS
            ========================================= */
-        nav {
+        .bg {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(63, 37, 72, 0.4); /* Fundo translúcido */
-            backdrop-filter: blur(10px); /* Efeito Glass/Vidro */
-            padding: 10px 30px;
-            border-radius: 100px; /* Bordas de pílula */
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-            border: 1px solid rgba(124, 103, 158, 0.3);
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--bg-dark);
         }
 
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 100px;
-            transition: 0.3s;
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            animation: float 18s ease-in-out infinite alternate;
         }
 
-        nav a:hover {
-            background-color: var(--purple-light);
-            color: var(--bg-dark);
+        .b1 { width: 560px; height: 560px; background: var(--blue-accent);   top: -140px;  left: -120px; opacity: .60; }
+        .b2 { width: 480px; height: 480px; background: var(--purple-dark);   top: 38%;     right: -140px; opacity: .80; animation-delay: -6s; }
+        .b3 { width: 440px; height: 440px; background: var(--purple-light);  bottom: -180px; left: 28%;  opacity: .32; animation-delay: -3s; }
+        .b4 { width: 320px; height: 320px; background: var(--yellow-accent); bottom: -140px; right: 12%; opacity: .16; animation-delay: -9s; }
+
+        @keyframes float {
+            from { transform: translate(0, 0) scale(1); }
+            to   { transform: translate(40px, -30px) scale(1.12); }
         }
 
         /* =========================================
-           SEÇÃO PRINCIPAL (HERO) (Estilo Imagem 6)
+           GLASSMORPHISM (classe reutilizável)
+           ========================================= */
+        .glass {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* =========================================
+           MENU LATERAL EM PÍLULA (estilo "Side Navigation")
+           ========================================= */
+        .side-nav {
+            position: fixed;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            border-radius: var(--pill);
+            background: linear-gradient(180deg, rgba(124, 103, 158, 0.38), rgba(53, 54, 156, 0.16));
+            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            z-index: 1000;
+        }
+
+        .side-nav a {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            border-radius: var(--pill);
+            display: grid;
+            place-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: background .3s ease, color .3s ease, transform .3s ease;
+        }
+
+        .side-nav a svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .side-nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+
+        /* item ativo: círculo branco, como o ícone da pasta no exemplo */
+        .side-nav a.active {
+            background: #fff;
+            color: var(--bg-card);
+            transform: scale(1.06);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        }
+
+        /* rótulo que aparece ao passar o mouse */
+        .side-nav a span {
+            position: absolute;
+            left: 66px;
+            padding: 6px 14px;
+            border-radius: var(--pill);
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-6px);
+            transition: .25s ease;
+        }
+
+        .side-nav a:hover span { opacity: 1; transform: translateX(0); }
+
+        /* =========================================
+           LAYOUT GERAL
+           ========================================= */
+        main { padding-left: 110px; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .section-title.center { text-align: center; }
+        .section-title.accent { color: var(--yellow-accent); }
+
+        .sub-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 70px 0 24px;
+        }
+
+        /* =========================================
+           HERO
            ========================================= */
         .hero {
             display: flex;
@@ -81,72 +204,227 @@
             padding: 20px;
         }
 
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: var(--pill);
+            font-size: 0.85rem;
+            color: var(--yellow-accent);
+            margin-bottom: 28px;
+        }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
             margin-bottom: 10px;
         }
 
         .hero h1 span {
-            color: var(--purple-light);
+            background: linear-gradient(90deg, var(--purple-light), var(--yellow-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
         .hero h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+            font-weight: 500;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+        }
+
+        .hero p.lead {
+            max-width: 620px;
+            color: var(--text-muted);
         }
 
         .buttons {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
-        /* Botões com bordas arredondadas (Estilo Imagem 8) */
+        /* =========================================
+           BOTÕES (pílula)
+           ========================================= */
         .btn {
+            display: inline-block;
             padding: 12px 30px;
-            border-radius: 100px; 
+            border-radius: var(--pill);
             text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: .3s;
             cursor: pointer;
+            border: 2px solid transparent;
+            font-family: inherit;
         }
+
+        .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
 
         .btn-primary {
             background-color: var(--purple-light);
             color: #fff;
-            border: none;
         }
 
         .btn-primary:hover {
             background-color: var(--blue-accent);
+            box-shadow: 0 8px 24px rgba(53, 54, 156, 0.45);
+            transform: translateY(-2px);
         }
 
         .btn-outline {
             background-color: transparent;
             color: var(--text-light);
-            border: 2px solid var(--purple-light);
+            border-color: var(--purple-light);
         }
 
         .btn-outline:hover {
             background-color: var(--purple-light);
+            transform: translateY(-2px);
         }
 
         /* =========================================
-           SEÇÃO DE PROJETOS
+           SOBRE
            ========================================= */
-        .projects-section {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
+        .about { padding: 80px 0 40px; }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 40px;
+            align-items: center;
         }
 
-        .projects-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--yellow-accent); /* Destaque com a cor 5 */
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
         }
+
+        /* esfera decorativa (substitui o mascote da referência) */
+        .orb-wrap { display: grid; place-items: center; }
+
+        .orb {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 28%, rgba(255, 255, 255, .55), transparent 38%),
+                conic-gradient(from 200deg, var(--blue-accent), var(--purple-light), var(--yellow-accent), var(--purple-dark), var(--blue-accent));
+            box-shadow: 0 30px 70px rgba(53, 54, 156, 0.45), inset 0 0 40px rgba(255, 255, 255, .12);
+            animation: spin 24s linear infinite;
+        }
+
+        .orb::after {
+            content: "";
+            position: absolute;
+            inset: -14px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* =========================================
+           HABILIDADES
+           ========================================= */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-card {
+            border-radius: var(--card-radius);
+            padding: 24px;
+        }
+
+        .skill-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            color: var(--purple-light);
+        }
+
+        /* =========================================
+           TAGS (pílula)
+           ========================================= */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: rgba(63, 37, 72, 0.7);
+            color: var(--yellow-accent);
+            border: 1px solid rgba(124, 103, 158, 0.45);
+            padding: 5px 14px;
+            border-radius: var(--pill);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* =========================================
+           EXPERIÊNCIA (linha do tempo)
+           ========================================= */
+        .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 35px;
+            top: 36px;
+            bottom: 36px;
+            width: 2px;
+            background: linear-gradient(var(--purple-light), transparent);
+        }
+
+        .t-item {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .t-badge {
+            position: relative;
+            flex: 0 0 72px;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%; /* círculo perfeito */
+            background: linear-gradient(135deg, var(--blue-accent), var(--purple-light));
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            line-height: 1.2;
+            box-shadow: 0 8px 22px rgba(53, 54, 156, 0.4);
+        }
+
+        .t-card {
+            flex: 1;
+            border-radius: var(--card-radius);
+            padding: 22px 26px;
+        }
+
+        .t-card h4 { font-size: 1.1rem; }
+        .t-card .where { color: var(--purple-light); font-size: 0.9rem; margin-bottom: 8px; }
+        .t-card p { color: var(--text-muted); font-size: 0.92rem; }
+
+        /* =========================================
+           PROJETOS
+           ========================================= */
+        .projects-section { padding: 90px 0 40px; }
 
         .grid {
             display: grid;
@@ -154,108 +432,472 @@
             gap: 30px;
         }
 
-        /* Cartão de Projeto (Borda 30px como na Imagem 8) */
         .card {
-            background-color: var(--bg-card);
-            border-radius: 30px;
-            padding: 25px;
-            border: 1px solid var(--purple-dark);
-            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-radius: var(--card-radius);
+            padding: 28px;
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
         }
 
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--purple-light);
-            box-shadow: 0 10px 20px rgba(53, 54, 156, 0.2);
+            box-shadow: 0 14px 34px rgba(53, 54, 156, 0.3);
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
             color: var(--purple-light);
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             margin-bottom: 20px;
         }
 
-        /* Tags de Habilidades no Card */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+        .card .tags { margin-bottom: 24px; }
+        .card .btn { align-self: flex-start; margin-top: auto; }
 
-        .tag {
-            background-color: var(--purple-dark);
+        .metric {
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 16px;
+            padding: 4px 14px;
+            border-radius: var(--pill);
+            background: rgba(200, 199, 147, 0.14);
             color: var(--yellow-accent);
-            padding: 5px 12px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            font-size: 0.78rem;
+            font-weight: 600;
         }
 
+        /* =========================================
+           CONTATO
+           ========================================= */
+        .contact { padding: 90px 0 60px; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 30px;
+        }
+
+        .panel {
+            border-radius: var(--card-radius);
+            padding: 30px;
+        }
+
+        .panel h4 { margin-bottom: 18px; font-size: 1.1rem; }
+
+        .field { margin-bottom: 16px; }
+
+        .field label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: var(--pill);
+            background: rgba(18, 16, 13, 0.55);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color .3s, box-shadow .3s;
+        }
+
+        .field textarea {
+            border-radius: var(--card-radius);
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: var(--purple-light);
+            box-shadow: 0 0 0 3px rgba(124, 103, 158, 0.25);
+        }
+
+        .contact-info p { color: var(--text-muted); margin-bottom: 16px; font-size: 0.95rem; }
+
+        .socials { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+
+        .social {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: var(--pill);
+            border: 1px solid var(--glass-border);
+            background: rgba(63, 37, 72, 0.35);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        .social:hover { background: var(--purple-light); transform: translateY(-2px); }
+
+        .social svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px 50px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* =========================================
+           ANIMAÇÃO DE ENTRADA
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .blob, .orb { animation: none; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            html { scroll-behavior: auto; }
+        }
+
+        /* =========================================
+           RESPONSIVO
+           ========================================= */
+        @media (max-width: 768px) {
+            main { padding-left: 0; padding-bottom: 100px; }
+
+            /* o menu lateral vira uma pílula horizontal na base da tela */
+            .side-nav {
+                left: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(-50%);
+                flex-direction: row;
+                gap: 6px;
+            }
+
+            .side-nav a { width: 46px; height: 46px; }
+            .side-nav a span { display: none; }
+
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; }
+
+            .orb-wrap { order: -1; }
+            .orb { width: 180px; height: 180px; }
+
+            .t-badge { flex-basis: 60px; width: 60px; height: 60px; font-size: 0.65rem; }
+            .timeline::before { left: 29px; }
+            .t-item { gap: 16px; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- NAVEGAÇÃO -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
+    <!-- FUNDO DESFOCADO -->
+    <div class="bg" aria-hidden="true">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+        <div class="blob b4"></div>
+    </div>
+
+    <!-- MENU LATERAL -->
+    <nav class="side-nav" aria-label="Navegação principal">
+        <a href="#home" class="active" aria-label="Home">
+            <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="#sobre" aria-label="Sobre">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            <span>Sobre</span>
+        </a>
+        <a href="#projetos" aria-label="Projetos">
+            <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span>Projetos</span>
+        </a>
+        <a href="#contato" aria-label="Contato">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+            <span>Contato</span>
+        </a>
     </nav>
 
-    <!-- CABEÇALHO -->
-    <section class="hero" id="home">
-        <!-- Substitua pelo seu nome -->
-        <h1>Olá! Eu sou <span>Seu Nome</span></h1>
-        <h2>Cientista de Dados / Desenvolvedor</h2>
-        <p style="max-width: 600px; color: var(--text-muted);">
-            Transformo dados em inteligência de negócios. Especialista em Machine Learning, APIs, e Engenharia de Dados na nuvem.
-        </p>
-        <div class="buttons">
-            <a href="#projetos" class="btn btn-primary">Ver meus Projetos</a>
-            <a href="#contato" class="btn btn-outline">Fale Comigo</a>
-        </div>
-    </section>
+    <main>
 
-    <!-- SEÇÃO DE PROJETOS -->
-    <section class="projects-section" id="projetos">
-        <h2>Meus Projetos</h2>
-        <div class="grid">
-
-            <!-- CARTÃO: PROJETO DATARISK -->
-            <div class="card">
-                <h3>Motor de Risco de Crédito</h3>
-                <p>Pipeline end-to-end integrando engenharia de dados em nuvem (AWS S3), clusterização comportamental (K-Means) e classificação (Gradient Boosting). O modelo foi produtizado como uma API REST utilizando FastAPI e empacotado em Docker.</p>
-                <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">FastAPI</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Scikit-Learn</span>
-                </div>
-                <!-- Substitua o link abaixo pelo link real do seu repositório no GitHub -->
-                <a href="https://github.com/hellnM/Credit-Risk_API" class="btn btn-primary" style="display: inline-block; padding: 8px 20px; font-size: 0.9rem;">Ver Código</a>
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <span class="badge glass reveal">Mestranda em Modelagem e Métodos Quantitativos · UFC</span>
+            <h1 class="reveal">Olá! Eu sou <span>Hellen</span></h1>
+            <h2 class="reveal">Cientista de Dados · Machine Learning · Modelagem Quantitativa</h2>
+            <p class="lead reveal">
+                Formada em física, transformo dados em decisões. Trabalho com Machine Learning, APIs
+                e análise de séries temporais, de modelos de risco de crédito a dados climáticos.
+            </p>
+            <div class="buttons reveal">
+                <a href="#projetos" class="btn btn-primary">Ver meus Projetos</a>
+                <a href="#contato" class="btn btn-outline">Fale Comigo</a>
             </div>
+        </section>
 
-            <!-- CARTÃO: OUTRO PROJETO (Exemplo) -->
-            <div class="card">
-                <h3>Previsão de Vendas (Exemplo)</h3>
-                <p>Modelo de regressão para prever o faturamento de lojas utilizando dados históricos. Construído com XGBoost e visualização de dados via Streamlit.</p>
-                <div class="tags">
-                    <span class="tag">Pandas</span>
-                    <span class="tag">XGBoost</span>
-                    <span class="tag">Streamlit</span>
+        <!-- ================= SOBRE ================= -->
+        <section class="about" id="sobre">
+            <div class="container">
+                <h2 class="section-title reveal">Sobre mim</h2>
+
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <p>
+                            Venho da física, com experiência em análise multifractal, turbulência e séries temporais,
+                            e hoje faço mestrado em Modelagem e Métodos Quantitativos na UFC.
+                        </p>
+                        <p>
+                            Meus interesses de pesquisa estão em econofísica, finanças quantitativas, Machine Learning
+                            aplicado a dados climáticos e financeiros, otimização não linear e redes complexas.
+                        </p>
+                        <p>
+                            Gosto de levar um modelo até o fim: do dado bruto ao deploy em uma API documentada.
+                        </p>
+                    </div>
+                    <div class="orb-wrap reveal"><div class="orb" aria-hidden="true"></div></div>
                 </div>
-                <a href="#" class="btn btn-outline" style="display: inline-block; padding: 8px 20px; font-size: 0.9rem;">Em breve</a>
-            </div>
 
-        </div>
-    </section>
+                <h3 class="sub-title reveal">Habilidades &amp; Tecnologias</h3>
+                <div class="skills-grid">
+                    <div class="skill-card glass reveal">
+                        <h4>Ciência de Dados &amp; ML</h4>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Scikit-Learn</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">Gradient Boosting</span>
+                            <span class="tag">K-Means</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Power BI</span>
+                        </div>
+                    </div>
+                    <div class="skill-card glass reveal">
+                        <h4>Engenharia &amp; Deploy</h4>
+                        <div class="tags">
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">AWS S3</span>
+                            <span class="tag">Git &amp; GitHub</span>
+                        </div>
+                    </div>
+                    <div class="skill-card glass reveal">
+                        <h4>Pesquisa Quantitativa</h4>
+                        <div class="tags">
+                            <span class="tag">Séries temporais</span>
+                            <span class="tag">Multifractais</span>
+                            <span class="tag">Redes complexas</span>
+                            <span class="tag">Otimização não linear</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="sub-title reveal">Trajetória</h3>
+                <div class="timeline">
+                    <div class="t-item reveal">
+                        <div class="t-badge">2026<br>–2028</div>
+                        <div class="t-card glass">
+                            <h4>Mestrado em Modelagem e Métodos Quantitativos</h4>
+                            <div class="where">Universidade Federal do Ceará (UFC) · Dep. de Estatística e Matemática Aplicada</div>
+                            <p>Pesquisa em Machine Learning, finanças quantitativas e sistemas complexos. Conclusão prevista para março de 2028.</p>
+                        </div>
+                    </div>
+                    <div class="t-item reveal">
+                        <div class="t-badge">Física</div>
+                        <div class="t-card glass">
+                            <h4>Formação e pesquisa em Física</h4>
+                            <div class="where">Análise multifractal · Turbulência · Séries temporais</div>
+                            <p>Base em métodos quantitativos e modelagem de sistemas não lineares, aplicada hoje a dados reais.</p>
+                        </div>
+                    </div>
+                    <div class="t-item reveal">
+                        <div class="t-badge">Docência</div>
+                        <div class="t-card glass">
+                            <h4>Professora de Física</h4>
+                            <div class="where">Cursinho comunitário pré-vestibular</div>
+                            <p>Aulas de cinemática e mecânica newtoniana para estudantes do ensino médio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PROJETOS ================= -->
+        <section class="projects-section" id="projetos">
+            <div class="container">
+                <h2 class="section-title center accent reveal">Meus Projetos</h2>
+                <div class="grid">
+
+                    <!-- PROJETO: RISCO DE CRÉDITO (DATARISK) -->
+                    <div class="card glass reveal">
+                        <h3>Motor de Risco de Crédito</h3>
+                        <span class="metric">AUC-ROC 0,8522</span>
+                        <p>Pipeline end-to-end integrando engenharia de dados em nuvem (AWS S3), clusterização comportamental (K-Means) e classificação (Gradient Boosting). O modelo foi produtizado como uma API REST com FastAPI e empacotado em Docker.</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Scikit-Learn</span>
+                        </div>
+                        <a href="https://github.com/hellnM/Credit-Risk_API" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Ver Código</a>
+                    </div>
+
+                    <!-- PROJETO: ONDAS DE CALOR -->
+                    <div class="card glass reveal">
+                        <h3>Detecção de Ondas de Calor</h3>
+                        <p>Pipeline de Machine Learning para detecção de ondas de calor em Fortaleza, usando séries temporais de temperatura.</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Séries temporais</span>
+                            <span class="tag">Machine Learning</span>
+                        </div>
+                        <!-- Troque "#" pelo link do repositório quando publicar -->
+                        <a href="#" class="btn btn-outline btn-sm">Em breve</a>
+                    </div>
+
+                    <!-- PROJETO: REDES COMPLEXAS -->
+                    <div class="card glass reveal">
+                        <h3>Redes Complexas e Clima</h3>
+                        <p>Rede construída por visibility graph a partir de dados de temperatura do INMET (Fortaleza), para relacionar a estrutura da rede às ondas de calor.</p>
+                        <div class="tags">
+                            <span class="tag">Redes complexas</span>
+                            <span class="tag">Visibility Graph</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <a href="#" class="btn btn-outline btn-sm">Em breve</a>
+                    </div>
+
+                    <!-- PROJETO: TRADE SURVEILLANCE -->
+                    <div class="card glass reveal">
+                        <h3>Trade Surveillance &amp; Compliance</h3>
+                        <p>Análise de compliance e vigilância de negociações com dados públicos da B3, com consultas em SQL e dashboard em Power BI.</p>
+                        <div class="tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Dados B3</span>
+                        </div>
+                        <a href="#" class="btn btn-outline btn-sm">Em breve</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTATO ================= -->
+        <section class="contact" id="contato">
+            <div class="container">
+                <h2 class="section-title center reveal">Vamos conversar</h2>
+
+                <div class="contact-grid">
+                    <form class="panel glass reveal" id="contact-form">
+                        <h4>Envie uma mensagem</h4>
+                        <div class="field">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" required>
+                        </div>
+                        <div class="field">
+                            <label for="email">Seu e-mail</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="field">
+                            <label for="msg">Mensagem</label>
+                            <textarea id="msg" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem</button>
+                    </form>
+
+                    <div class="panel glass contact-info reveal">
+                        <h4>Aberta a novas oportunidades</h4>
+                        <p>
+                            Estou à procura de oportunidades em ciência de dados, Machine Learning e modelagem
+                            quantitativa. Se tiver um projeto, uma vaga ou quiser trocar ideias, fale comigo.
+                        </p>
+                        <div class="socials">
+                            <!-- Troque os links pelos seus -->
+                            <a class="social" href="https://github.com/hellnM" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.2-4-2-6-2m12 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.500 2.800 5.400 3.100 5.400 3.100a4.2 4.2 0 0 0-.1 3.200A4.600 4.600 0 0 0 4 9.500c0 4.600 2.700 5.700 5.500 6-.6.600-.6 1.200-.5 2V21"/></svg>
+                                GitHub
+                            </a>
+                            <a class="social" href="https://www.linkedin.com/in/SEU-PERFIL" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 11v5M8 8v.01M12 16v-5m0 2.500c0-1.400 1-2.500 2.500-2.500S17 12 17 13.500V16"/></svg>
+                                LinkedIn
+                            </a>
+                            <a class="social" href="mailto:SEU-EMAIL@exemplo.com">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+                                E-mail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>© <span id="year"></span> Hellen · Feito com HTML e CSS</footer>
+    </main>
+
+    <script>
+        // Ano no rodapé
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Animação de entrada ao rolar
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Item ativo no menu conforme a seção visível
+        const links = document.querySelectorAll('.side-nav a');
+        const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+                }
+            });
+        }, { rootMargin: '-45% 0px -45% 0px' });
+        sections.forEach(s => s && navObserver.observe(s));
+
+        // Formulário: abre o app de e-mail (site estático, sem servidor)
+        document.getElementById('contact-form').addEventListener('submit', (ev) => {
+            ev.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const msg = document.getElementById('msg').value;
+            const corpo = `${msg}\n\n— ${nome} (${email})`;
+            // Troque pelo seu e-mail
+            window.location.href = 'mailto:SEU-EMAIL@exemplo.com'
+                + '?subject=' + encodeURIComponent('Contato pelo portfólio')
+                + '&body=' + encodeURIComponent(corpo);
+        });
+    </script>
 
 </body>
 </html>

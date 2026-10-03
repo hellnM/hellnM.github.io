@@ -135,6 +135,7 @@
 
         .side-nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
 
+        /* item ativo: círculo branco, como o ícone da pasta no exemplo */
         .side-nav a.active {
             background: #fff;
             color: var(--bg-card);
@@ -142,6 +143,7 @@
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
         }
 
+        /* rótulo que aparece ao passar o mouse */
         .side-nav a span {
             position: absolute;
             left: 66px;
@@ -216,14 +218,6 @@
             font-weight: 800;
             line-height: 1.15;
             margin-bottom: 10px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(90deg, var(--purple-light), var(--yellow-accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
         }
 
         .hero h2 {
@@ -303,6 +297,7 @@
             margin-bottom: 16px;
         }
 
+        /* esfera decorativa (substitui o mascote da referência) */
         .orb-wrap { display: grid; place-items: center; }
 
         .orb {
@@ -397,7 +392,7 @@
             flex: 0 0 72px;
             width: 72px;
             height: 72px;
-            border-radius: 50%;
+            border-radius: 50%; /* círculo perfeito */
             background: linear-gradient(135deg, var(--blue-accent), var(--purple-light));
             display: grid;
             place-items: center;
@@ -476,9 +471,8 @@
         .contact { padding: 90px 0 60px; }
 
         .contact-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 30px;
+            max-width: 760px;
+            margin: 0 auto;
         }
 
         .panel {
@@ -486,67 +480,11 @@
             padding: 30px;
         }
 
-        .panel h4 { margin-bottom: 18px; font-size: 1.1rem; }
+        .contact-info { text-align: center; }
 
-        .field { margin-bottom: 16px; }
+        .contact-info p { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
 
-        .field label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .field input,
-        .field textarea {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: var(--pill);
-            background: rgba(18, 16, 13, 0.55);
-            border: 1px solid var(--glass-border);
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color .3s, box-shadow .3s;
-        }
-
-        .field textarea {
-            border-radius: var(--card-radius);
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .field input:focus,
-        .field textarea:focus {
-            border-color: var(--purple-light);
-            box-shadow: 0 0 0 3px rgba(124, 103, 158, 0.25);
-        }
-
-        /* Estilização específica para o checkbox LGPD */
-        .checkbox-field {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            margin-bottom: 24px;
-        }
-        
-        .checkbox-field input[type="checkbox"] {
-            width: auto;
-            margin-top: 4px;
-            cursor: pointer;
-        }
-
-        .checkbox-field label {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            line-height: 1.4;
-            cursor: pointer;
-        }
-
-        .contact-info p { color: var(--text-muted); margin-bottom: 16px; font-size: 0.95rem; }
-
-        .socials { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+        .socials { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 
         .social {
             display: inline-flex;
@@ -605,6 +543,7 @@
         @media (max-width: 768px) {
             main { padding-left: 0; padding-bottom: 100px; }
 
+            /* o menu lateral vira uma pílula horizontal na base da tela */
             .side-nav {
                 left: 50%;
                 top: auto;
@@ -617,8 +556,7 @@
             .side-nav a { width: 46px; height: 46px; }
             .side-nav a span { display: none; }
 
-            .about-grid,
-            .contact-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
 
             .orb-wrap { order: -1; }
             .orb { width: 180px; height: 180px; }
@@ -664,7 +602,7 @@
         <!-- ================= HERO ================= -->
         <section class="hero" id="home">
             <span class="badge glass reveal">Mestranda em Modelagem e Métodos Quantitativos · UFC</span>
-            <h1 class="reveal"><span>Hellen</span> de Andrade Moura</h1>
+            <h1 class="reveal">Hellen de Andrade Moura</h1>
             <h2 class="reveal">Física · Ciência de Dados · Modelagem Quantitativa</h2>
             <p class="lead reveal">
                 Bacharel em Física pela UFC e mestranda em Modelagem e Métodos Quantitativos.
@@ -819,7 +757,7 @@
                     <!-- PROJETO: ONDAS DE CALOR -->
                     <div class="card glass reveal">
                         <h3>Ondas de Calor com Redes Complexas</h3>
-                        <p>Séries temporais de temperatura do INMET modeladas como redes complexas com algoritmos de visibilidade (HVG e NVG), para detectar ondas de calor em Fortaleza-CE.</p>
+                        <p>Temperatura máxima diária do INMET (estação A304, Fortaleza, 2008–2021) convertida em redes de visibilidade (HVG e NVG). Análise estrutural das duas redes e comparação dos 15 maiores hubs do HVG com ondas de calor (CTX90pct e EHF): 1 dos 15 coincide com um evento.</p>
                         <div class="tags">
                             <span class="tag">Python</span>
                             <span class="tag">Jupyter</span>
@@ -851,43 +789,10 @@
         <!-- ================= CONTATO ================= -->
         <section class="contact" id="contato">
             <div class="container">
-                <h2 class="section-title center reveal">Vamos conversar</h2>
+                <h2 class="section-title center reveal">Contato</h2>
 
                 <div class="contact-grid">
-                    <!-- Formulário atualizado para FormSubmit e com campo LGPD -->
-                    <form action="https://formsubmit.co/h.deandrademoura@gmail.com" method="POST" class="panel glass reveal" id="contact-form">
-                        <h4>Envie uma mensagem</h4>
-                        
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="#">
-                        <input type="hidden" name="_subject" value="Novo contato pelo portfólio!">
-
-                        <div class="field">
-                            <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="Nome" required>
-                        </div>
-                        <div class="field">
-                            <label for="email">Seu e-mail</label>
-                            <input type="email" id="email" name="Email" required>
-                        </div>
-                        <div class="field">
-                            <label for="msg">Mensagem</label>
-                            <textarea id="msg" name="Mensagem" required></textarea>
-                        </div>
-                        
-                        <!-- Checkbox de Consentimento LGPD -->
-                        <div class="field checkbox-field">
-                            <input type="checkbox" id="lgpd-consent" name="Consentimento_LGPD" value="Concedido" required>
-                            <label for="lgpd-consent">
-                                Concordo em fornecer meu nome e e-mail para que a Hellen possa responder à minha mensagem, de acordo com a LGPD.
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem</button>
-                    </form>
-
                     <div class="panel glass contact-info reveal">
-                        <h4>Contato</h4>
                         <p>
                             Busco oportunidades em ciência de dados, Machine Learning e modelagem quantitativa.
                         </p>

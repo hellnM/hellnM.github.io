@@ -135,7 +135,6 @@
 
         .side-nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
 
-        /* item ativo: círculo branco, como o ícone da pasta no exemplo */
         .side-nav a.active {
             background: #fff;
             color: var(--bg-card);
@@ -143,7 +142,6 @@
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
         }
 
-        /* rótulo que aparece ao passar o mouse */
         .side-nav a span {
             position: absolute;
             left: 66px;
@@ -305,7 +303,6 @@
             margin-bottom: 16px;
         }
 
-        /* esfera decorativa (substitui o mascote da referência) */
         .orb-wrap { display: grid; place-items: center; }
 
         .orb {
@@ -400,7 +397,7 @@
             flex: 0 0 72px;
             width: 72px;
             height: 72px;
-            border-radius: 50%; /* círculo perfeito */
+            border-radius: 50%;
             background: linear-gradient(135deg, var(--blue-accent), var(--purple-light));
             display: grid;
             place-items: center;
@@ -525,6 +522,28 @@
             box-shadow: 0 0 0 3px rgba(124, 103, 158, 0.25);
         }
 
+        /* Estilização específica para o checkbox LGPD */
+        .checkbox-field {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+        
+        .checkbox-field input[type="checkbox"] {
+            width: auto;
+            margin-top: 4px;
+            cursor: pointer;
+        }
+
+        .checkbox-field label {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            line-height: 1.4;
+            cursor: pointer;
+        }
+
         .contact-info p { color: var(--text-muted); margin-bottom: 16px; font-size: 0.95rem; }
 
         .socials { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
@@ -586,7 +605,6 @@
         @media (max-width: 768px) {
             main { padding-left: 0; padding-bottom: 100px; }
 
-            /* o menu lateral vira uma pílula horizontal na base da tela */
             .side-nav {
                 left: 50%;
                 top: auto;
@@ -836,20 +854,35 @@
                 <h2 class="section-title center reveal">Vamos conversar</h2>
 
                 <div class="contact-grid">
-                    <form class="panel glass reveal" id="contact-form">
+                    <!-- Formulário atualizado para FormSubmit e com campo LGPD -->
+                    <form action="https://formsubmit.co/h.deandrademoura@gmail.com" method="POST" class="panel glass reveal" id="contact-form">
                         <h4>Envie uma mensagem</h4>
+                        
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="#">
+                        <input type="hidden" name="_subject" value="Novo contato pelo portfólio!">
+
                         <div class="field">
                             <label for="nome">Nome</label>
-                            <input type="text" id="nome" required>
+                            <input type="text" id="nome" name="Nome" required>
                         </div>
                         <div class="field">
                             <label for="email">Seu e-mail</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="Email" required>
                         </div>
                         <div class="field">
                             <label for="msg">Mensagem</label>
-                            <textarea id="msg" required></textarea>
+                            <textarea id="msg" name="Mensagem" required></textarea>
                         </div>
+                        
+                        <!-- Checkbox de Consentimento LGPD -->
+                        <div class="field checkbox-field">
+                            <input type="checkbox" id="lgpd-consent" name="Consentimento_LGPD" value="Concedido" required>
+                            <label for="lgpd-consent">
+                                Concordo em fornecer meu nome e e-mail para que a Hellen possa responder à minha mensagem, de acordo com a LGPD.
+                            </label>
+                        </div>
+
                         <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem</button>
                     </form>
 
@@ -915,18 +948,6 @@
             });
         }, { rootMargin: '-45% 0px -45% 0px' });
         sections.forEach(s => s && navObserver.observe(s));
-
-        // Formulário: abre o app de e-mail (site estático, sem servidor)
-        document.getElementById('contact-form').addEventListener('submit', (ev) => {
-            ev.preventDefault();
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const msg = document.getElementById('msg').value;
-            const corpo = `${msg}\n\n— ${nome} (${email})`;
-            window.location.href = 'mailto:h.deandrademoura@gmail.com'
-                + '?subject=' + encodeURIComponent('Contato pelo portfólio')
-                + '&body=' + encodeURIComponent(corpo);
-        });
     </script>
 
 </body>
